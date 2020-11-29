@@ -152,7 +152,7 @@
 		<div class="pull-right hidden-xs">
 			<b>Version</b> 1.0.8
 		</div>
-		<strong>Copyright &copy; 2019-2020 <a
+		<strong>Copyright &copy; 2020-2021 <a
 			href="http://www.nsu.edu.cn">成都东软学院</a>.
 		</strong> All rights reserved. </footer>
 		<!-- 底部导航 /-->
