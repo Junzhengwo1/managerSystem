@@ -1,0 +1,6 @@
+# Project exclude paths
+/managerSystem_dao/target/
+/managerSystem_domain/target/
+/managerSystem_service/target/
+/managerSystem_utils/target/
+/managerSystem_web/target/
