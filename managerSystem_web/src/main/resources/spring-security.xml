@@ -13,7 +13,6 @@
 	<security:http pattern="/css/**" security="none"/>
 	<security:http pattern="/img/**" security="none"/>
 	<security:http pattern="/plugins/**" security="none"/>
-	<security:http pattern="/index.jsp" security="none"/>
 
 	<!--
         配置具体的规则
@@ -22,7 +21,7 @@
     -->
 	<security:http auto-config="true" use-expressions="false">
 		<!-- 配置具体的拦截的规则 pattern="请求路径的规则" access="访问系统的人，必须有ROLE_USER的角色" -->
-		<security:intercept-url pattern="/**" access="ROLE_USER,ROLE_ADMIN"/>
+		<security:intercept-url pattern="/**" access="ROLE_ADMIN,ROLE_USER"/>
 
 		<!-- 定义跳转的具体的页面 -->
 		<security:form-login

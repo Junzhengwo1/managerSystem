@@ -8,6 +8,9 @@
 
 <title> Log in</title>
 
+
+
+
 <meta
 	content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
 	name="viewport">
@@ -27,7 +30,7 @@
 <body class="hold-transition login-page">
 	<div class="login-box">
 		<div class="login-logo">
-			<a href="all-admin-index.html"><b>KOUJIAJUN</b>后台管理系统</a>
+			<a href="all-admin-index.html"><b>企业</b>后台管理系统</a>
 		</div>
 		<!-- /.login-logo -->
 		<div class="login-box-body">

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,8 +30,14 @@ public class UserServiceImpl implements IUserService {
         //如何将UserInfo 转换成 UserDetails
         //User user=new User(userInfo.getUsername(),"{noop}"+userInfo.getPassword(),getAuthority(userInfo.getRoles()));
         //用另一个构造；更加高级
-        User user=new User(userInfo.getUsername(),"{noop}"+userInfo.getPassword(),
-                userInfo.getStatus()==0? false:true,true,true,true,getAuthority(userInfo.getRoles()));
+        User user=new User(userInfo.getUsername(),
+                //从数据库中拿出的密码，采取加密，然后框架才能拿作比较。
+                new BCryptPasswordEncoder().encode(userInfo.getPassword()),
+                userInfo.getStatus()==0? false:true,
+                true,
+                true,
+                true,
+                getAuthority(userInfo.getRoles()));
         return user;
     }
 
