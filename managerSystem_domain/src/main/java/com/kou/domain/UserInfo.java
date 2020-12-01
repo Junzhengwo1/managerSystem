@@ -14,7 +14,7 @@ public class UserInfo {
     private String email;
     private String password;
     private String phoneNum;
-    private int status;
+    private Integer status;
     private String statusStr;
     private List<Role> roles;
 
@@ -58,7 +58,7 @@ public class UserInfo {
         this.phoneNum = phoneNum;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
@@ -67,6 +67,13 @@ public class UserInfo {
     }
 
     public String getStatusStr() {
+        if(status!=null){
+            if(status==0){
+                statusStr="未开启";
+            }else if(status==1){
+                statusStr="开启";
+            }
+        }
         return statusStr;
     }
 
