@@ -12,8 +12,7 @@ http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!--开启注解扫描 ；只扫描controller-->
-    <context:component-scan base-package="com.kou">
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    <context:component-scan base-package="com.kou.controller">
     </context:component-scan>
     <!--配置视图解析器-->
     <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">

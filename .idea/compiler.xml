@@ -6,10 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="managerSystem_domain" />
-        <module name="managerSystem_utils" />
-        <module name="managerSystem_web" />
         <module name="managerSystem_service" />
+        <module name="managerSystem_domain" />
+        <module name="managerSystem_web" />
+        <module name="managerSystem_utils" />
         <module name="managerSystem_dao" />
       </profile>
     </annotationProcessing>
