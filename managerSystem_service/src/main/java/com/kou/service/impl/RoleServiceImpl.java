@@ -1,6 +1,7 @@
 package com.kou.service.impl;
 
 import com.kou.dao.IRoleDao;
+import com.kou.domain.Permission;
 import com.kou.domain.Role;
 import com.kou.service.IRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,17 @@ public class RoleServiceImpl implements IRoleService {
         roleDao.deleteFromRole_PermissionByRoleId(roleId);
         //从role表中删除
         roleDao.deleteRoleById(roleId);
+    }
+
+    @Override
+    public List<Permission> findOtherPermissions(int roleId) {
+        return roleDao.findOtherPermissions(roleId);
+    }
+
+    @Override
+    public void addPermissionToRole(int roleId, int[] permissionIds) {
+        for (int permissionId : permissionIds) {
+            roleDao.addPermissionToRole(roleId,permissionId);
+        }
     }
 }

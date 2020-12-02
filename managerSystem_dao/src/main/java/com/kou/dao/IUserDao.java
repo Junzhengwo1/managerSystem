@@ -1,5 +1,6 @@
 package com.kou.dao;
 
+import com.kou.domain.Role;
 import com.kou.domain.UserInfo;
 import org.apache.ibatis.annotations.*;
 
@@ -62,4 +63,21 @@ public interface IUserDao {
                     many = @Many(select = "com.kou.dao.IRoleDao.findRoleByUserId"))
     })
     UserInfo findById(int id);
+
+    /**
+     * 根据userId查询出当前用户没有关联的角色
+     * @param userId
+     * @return
+     */
+    @Select("select * from role where id not in (select roleId from users_role where userId=#{userId})")
+    List<Role> findOtherRoles(int userId);
+
+
+    /**
+     * 给用户添加角色
+     * @param userId
+     * @param roleId
+     */
+    @Insert("insert into users_role(userId,roleId) value(#{userId},#{roleId})")
+    void addRoleToUser(@Param("userId")int userId,@Param("roleId")int roleId);
 }

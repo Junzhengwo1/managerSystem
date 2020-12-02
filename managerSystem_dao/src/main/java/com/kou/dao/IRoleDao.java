@@ -1,5 +1,6 @@
 package com.kou.dao;
 
+import com.kou.domain.Permission;
 import com.kou.domain.Role;
 import org.apache.ibatis.annotations.*;
 
@@ -76,4 +77,20 @@ public interface IRoleDao {
      */
     @Delete("delete from role where id=#{roleId}")
     void deleteRoleById(int roleId);
+
+    /**
+     * 查询出角色可以添加的权限
+     * @param roleId
+     * @return
+     */
+    @Select("select * from permission where id not in(select permissionId from role_permission where roleId=#{roleId})")
+    List<Permission> findOtherPermissions(int roleId);
+
+    /**
+     * 给对应的角色添加权限
+     * @param roleId
+     * @param permissionId
+     */
+    @Insert("insert into role_permission(roleId,permissionId) value(#{roleId},#{permissionId})")
+    void addPermissionToRole(@Param("roleId") int roleId, @Param("permissionId") int permissionId);
 }

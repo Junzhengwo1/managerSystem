@@ -1,4 +1,5 @@
 package com.kou.controller;
+import com.kou.domain.Permission;
 import com.kou.domain.Role;
 
 import com.kou.service.IRoleService;
@@ -28,6 +29,7 @@ public class RoleController {
         mv.setViewName("role-list");
         return mv;
     }
+
     @RequestMapping("/save.do")
     public String save(Role role){
         roleService.save(role);
@@ -45,8 +47,31 @@ public class RoleController {
 
     @RequestMapping("/deleteRole.do")
     public String deleteRole(@RequestParam(name = "id",required = true) int roleId){
-
         roleService.deleteRole(roleId);
+        return "redirect:findAll.do";
+    }
+
+    /**
+     * 查询角色，并且查询出可以添加的权限
+     */
+    @RequestMapping("/findRoleByIdAndAllPermission")
+    public ModelAndView findRoleByIdAndAllPermission(@RequestParam(name = "id",required = true)int roleId){
+        //1.根据roleId查询role
+        Role role=roleService.findById(roleId);
+        //2.根据roleId查询可以添加的权限
+        List<Permission> otherPermissions= roleService.findOtherPermissions(roleId);
+        ModelAndView mv=new ModelAndView();
+        mv.addObject("role",role);
+        mv.addObject("permissionList",otherPermissions);
+        mv.setViewName("role-permission-add");
+        return mv;
+    }
+
+    @RequestMapping("/addPermissionToRole")
+    public String addPermissionToRole(@RequestParam(name = "roleId",required = true)int roleId,
+                                      @RequestParam(name = "ids",required = true)int[] permissionIds){
+
+        roleService.addPermissionToRole(roleId,permissionIds);
         return "redirect:findAll.do";
     }
 }

@@ -1,6 +1,7 @@
 package com.kou.service;
 
 
+import com.kou.domain.Permission;
 import com.kou.domain.Role;
 
 import java.util.List;
@@ -21,4 +22,8 @@ public interface IRoleService {
     Role findById(int roleId);
 
     void deleteRole(int roleId);
+
+    List<Permission> findOtherPermissions(int roleId);
+
+    void addPermissionToRole(int roleId, int[] permissionIds);
 }
