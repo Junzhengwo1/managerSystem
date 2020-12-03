@@ -68,6 +68,7 @@ public class LogAop {
         if(clazz!=null||method!=null|| clazz!=LogAop.class){
             //1.获取类上的@RequestMapping("/orders")
             RequestMapping classAnnotation = (RequestMapping) clazz.getAnnotation(RequestMapping.class);
+
             if(classAnnotation!=null){
                 String[] classValue = classAnnotation.value();
 
@@ -76,6 +77,9 @@ public class LogAop {
                 if(methodAnnotation!=null){
                     String[] methodValue = methodAnnotation.value();
                     url=classValue[0]+methodValue[0];
+                    if(url.equals("/sysLog/findAll.do")){
+                        return;
+                    }
                 }
             }
         }
@@ -99,5 +103,4 @@ public class LogAop {
         //调用service完场操作
         sysLogService.save(sysLog);
     }
-
 }

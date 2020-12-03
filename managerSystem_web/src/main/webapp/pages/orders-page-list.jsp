@@ -9,15 +9,9 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-
-
-
 <title>订单管理</title>
 <meta name="description" content="AdminLTE2定制版">
 <meta name="keywords" content="AdminLTE2定制版">
-
-
-
 
 <!-- Tell the browser to be responsive to screen width -->
 <meta
@@ -27,15 +21,6 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-
-
-
-
-
-
-
-
-
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/plugins/bootstrap/css/bootstrap.min.css">
@@ -106,8 +91,9 @@
 					订单管理 <small>订单列表</small>
 				</h1>
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-					<li><a href="#">订单管理</a></li>
+					<li><a href="${pageContext.request.contextPath}/index.jsp"><i
+							class="fa fa-dashboard"></i> 首页</a></li>
+					<li><a href="${pageContext.request.contextPath}/orders/findAll.do">订单管理</a></li>
 					<li class="active">订单列表</li>
 				</ol>
 			</section>

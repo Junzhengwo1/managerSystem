@@ -2,6 +2,8 @@ package com.kou.service;
 
 import com.kou.domain.SysLog;
 
+import java.util.List;
+
 /**
  * @author dell
  */
@@ -12,4 +14,6 @@ public interface ISysLogService {
      * @param sysLog
      */
     public void save(SysLog sysLog);
+
+    List<SysLog> findAll();
 }

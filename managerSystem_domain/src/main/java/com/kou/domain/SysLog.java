@@ -1,5 +1,7 @@
 package com.kou.domain;
 
+import com.kou.utils.DateToStringUtils;
+
 import java.util.Date;
 
 /**
@@ -33,6 +35,10 @@ public class SysLog {
     }
 
     public String getVisitTimeStr() {
+
+        if(visitTime!=null){
+            visitTimeStr= DateToStringUtils.date2String(visitTime,"yyyy-MM-dd HH:mm");
+        }
         return visitTimeStr;
     }
 
