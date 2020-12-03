@@ -17,9 +17,9 @@ public interface IPermissionService {
 
     void save(Permission permission);
 
-    Permission findById(int id);
+    Permission findById(Integer id);
 
 
 
-    void deletePermission(int id);
+    void deletePermission(Integer id);
 }

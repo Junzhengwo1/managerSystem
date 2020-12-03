@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface IOrdersService {
 
-    List<Orders> findAll(int page,int size);
+    List<Orders> findAll(Integer page,Integer size);
 
-    Orders findById(int ordersId);
+    Orders findById(Integer ordersId);
 }

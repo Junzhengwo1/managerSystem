@@ -37,7 +37,7 @@ public class RoleController {
     }
 
     @RequestMapping("/findById.do")
-    public ModelAndView findById(@RequestParam(name = "id",required = true)int roleId){
+    public ModelAndView findById(@RequestParam(name = "id",required = true)Integer roleId){
         ModelAndView mv=new ModelAndView();
         Role role=roleService.findById(roleId);
         mv.addObject("role",role);
@@ -46,7 +46,7 @@ public class RoleController {
     }
 
     @RequestMapping("/deleteRole.do")
-    public String deleteRole(@RequestParam(name = "id",required = true) int roleId){
+    public String deleteRole(@RequestParam(name = "id",required = true) Integer roleId){
         roleService.deleteRole(roleId);
         return "redirect:findAll.do";
     }
@@ -55,7 +55,7 @@ public class RoleController {
      * 查询角色，并且查询出可以添加的权限
      */
     @RequestMapping("/findRoleByIdAndAllPermission")
-    public ModelAndView findRoleByIdAndAllPermission(@RequestParam(name = "id",required = true)int roleId){
+    public ModelAndView findRoleByIdAndAllPermission(@RequestParam(name = "id",required = true)Integer roleId){
         //1.根据roleId查询role
         Role role=roleService.findById(roleId);
         //2.根据roleId查询可以添加的权限
@@ -68,8 +68,8 @@ public class RoleController {
     }
 
     @RequestMapping("/addPermissionToRole")
-    public String addPermissionToRole(@RequestParam(name = "roleId",required = true)int roleId,
-                                      @RequestParam(name = "ids",required = true)int[] permissionIds){
+    public String addPermissionToRole(@RequestParam(name = "roleId",required = true)Integer roleId,
+                                      @RequestParam(name = "ids",required = true)Integer[] permissionIds){
 
         roleService.addPermissionToRole(roleId,permissionIds);
         return "redirect:findAll.do";

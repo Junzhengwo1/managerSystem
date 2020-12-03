@@ -31,12 +31,12 @@ public class RoleServiceImpl implements IRoleService {
     }
 
     @Override
-    public Role findById(int roleId) {
+    public Role findById(Integer roleId) {
         return roleDao.findById(roleId);
     }
 
     @Override
-    public void deleteRole(int roleId) {
+    public void deleteRole(Integer roleId) {
         //从user_role表中删除
         roleDao.deleteFromUser_RoleByRoleId(roleId);
         //从role_permission表中删除
@@ -46,12 +46,12 @@ public class RoleServiceImpl implements IRoleService {
     }
 
     @Override
-    public List<Permission> findOtherPermissions(int roleId) {
+    public List<Permission> findOtherPermissions(Integer roleId) {
         return roleDao.findOtherPermissions(roleId);
     }
 
     @Override
-    public void addPermissionToRole(int roleId, int[] permissionIds) {
+    public void addPermissionToRole(Integer roleId, Integer[] permissionIds) {
         for (int permissionId : permissionIds) {
             roleDao.addPermissionToRole(roleId,permissionId);
         }

@@ -34,7 +34,7 @@ public class PermissionController {
     }
 
     @RequestMapping("/findById")
-    public ModelAndView findById(int id){
+    public ModelAndView findById(Integer id){
         ModelAndView mv=new ModelAndView();
         Permission permission=permissionService.findById(id);
         mv.addObject("permission",permission);
@@ -43,7 +43,7 @@ public class PermissionController {
     }
 
     @RequestMapping("/deletePermission.do")
-    public String deletePermission(@RequestParam(name = "id",required = true) int id){
+    public String deletePermission(@RequestParam(name = "id",required = true) Integer id){
         permissionService.deletePermission(id);
 
         return "redirect:findAll.do";

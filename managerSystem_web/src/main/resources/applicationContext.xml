@@ -60,8 +60,10 @@
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"></property>
     </bean>
+
     <!--3.配置事务的通知-->
-    <tx:advice id="advice">
+    <tx:advice id="advice" transaction-manager="transactionManager">
+        <!--配置事务的属性-->
         <tx:attributes>
             <tx:method name="save*" propagation="REQUIRED"/>
             <tx:method name="update*" propagation="REQUIRED"/>
@@ -76,6 +78,8 @@
         <aop:pointcut id="pointcut" expression="execution(* com.kou.service.impl.*.*(..))"/>
         <aop:advisor advice-ref="advice" pointcut-ref="pointcut"></aop:advisor>
     </aop:config>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
     <!--service层配置文件结束-->
 
 

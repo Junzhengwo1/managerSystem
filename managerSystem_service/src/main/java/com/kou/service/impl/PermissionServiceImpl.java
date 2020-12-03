@@ -29,12 +29,12 @@ public class PermissionServiceImpl implements IPermissionService {
     }
 
     @Override
-    public Permission findById(int id) {
+    public Permission findById(Integer id) {
         return permissionDao.findById(id);
     }
 
     @Override
-    public void deletePermission(int id) {
+    public void deletePermission(Integer id) {
         //从role_permission表中删除
         permissionDao.deleteFromRole_Permission(id);
         //从role表中删除

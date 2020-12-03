@@ -20,14 +20,14 @@ public class OrdersServiceImpl implements IOrdersService {
     @Autowired
     private IOrdersDao ordersDao;
     @Override
-    public List<Orders> findAll(int page,int size) {
+    public List<Orders> findAll(Integer page,Integer size) {
         //代表一页显示五条；必须在正常查询代码之前
         PageHelper.startPage(page,size);
         return ordersDao.findAll();
     }
 
     @Override
-    public Orders findById(int ordersId) {
+    public Orders findById(Integer ordersId) {
         return ordersDao.findById(ordersId);
     }
 }

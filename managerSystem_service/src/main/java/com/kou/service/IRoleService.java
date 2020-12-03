@@ -19,11 +19,11 @@ public interface IRoleService {
 
     void save(Role role);
 
-    Role findById(int roleId);
+    Role findById(Integer roleId);
 
-    void deleteRole(int roleId);
+    void deleteRole(Integer roleId);
 
-    List<Permission> findOtherPermissions(int roleId);
+    List<Permission> findOtherPermissions(Integer roleId);
 
-    void addPermissionToRole(int roleId, int[] permissionIds);
+    void addPermissionToRole(Integer roleId, Integer[] permissionIds);
 }

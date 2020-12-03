@@ -6,7 +6,7 @@ import java.util.List;
  * @author JIAJUN KOU
  */
 public class Permission {
-    private String id;
+    private Integer id;
     private String permissionName;
     private String url;
     private List<Role> roles;
@@ -21,11 +21,11 @@ public class Permission {
                 '}';
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

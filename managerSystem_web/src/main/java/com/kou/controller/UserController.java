@@ -4,12 +4,16 @@ import com.kou.domain.Role;
 import com.kou.domain.UserInfo;
 import com.kou.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -23,8 +27,8 @@ public class UserController {
     private IUserService userService;
 
     @RequestMapping("/findAll.do")
-    public ModelAndView findAll(){
-       List<UserInfo> userList = userService.findAll();
+    public ModelAndView findAll( ){
+        List<UserInfo> userList = userService.findAll();
         ModelAndView mv=new ModelAndView();
         mv.addObject("userList",userList);
         mv.setViewName("user-list");
@@ -38,7 +42,7 @@ public class UserController {
     }
 
     @RequestMapping("/findById.do")
-    public ModelAndView findById(int id){
+    public ModelAndView findById(Integer id){
         ModelAndView mv=new ModelAndView();
         UserInfo userInfo=userService.findById(id);
         mv.addObject("user",userInfo);
@@ -50,7 +54,7 @@ public class UserController {
      * 查询用户以及用户可以添加的角色
      */
     @RequestMapping("/findUserByIdAndAllRole.do")
-    public ModelAndView findUserByIdAndAllRole(@RequestParam(name = "id",required = true) int userId){
+    public ModelAndView findUserByIdAndAllRole(@RequestParam(name = "id",required = true) Integer userId){
         //1.根据用户id查询用户
         UserInfo userInfo = userService.findById(userId);
         //2.根据用户id查询可以添加的角色
@@ -66,8 +70,8 @@ public class UserController {
      * 给用户添加角色
      */
     @RequestMapping("/addRoleToUser.do")
-    public String addRoleToUser(@RequestParam(name = "userId",required = true)int userId,
-                              @RequestParam(name = "ids",required =true )int[] roleIds){
+    public String addRoleToUser(@RequestParam(name = "userId",required = true)Integer userId,
+                              @RequestParam(name = "ids",required =true )Integer[] roleIds){
         userService.addRoleToUser(userId,roleIds);
         return "redirect:findAll.do";
     }

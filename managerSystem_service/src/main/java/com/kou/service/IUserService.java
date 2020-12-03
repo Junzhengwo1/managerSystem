@@ -16,9 +16,9 @@ public interface IUserService extends UserDetailsService {
 
     void save(UserInfo userInfo);
 
-    UserInfo findById(int id);
+    UserInfo findById(Integer id);
 
-    List<Role> findOtherRoles(int userId);
+    List<Role> findOtherRoles(Integer userId);
 
-    void addRoleToUser(int userId, int[] roleIds);
+    void addRoleToUser(Integer userId, Integer[] roleIds);
 }

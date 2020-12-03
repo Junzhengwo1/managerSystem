@@ -58,7 +58,6 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public List<UserInfo> findAll() {
-
         return userDao.findAll();
     }
 
@@ -66,24 +65,21 @@ public class UserServiceImpl implements IUserService {
     public void save(UserInfo userInfo) {
         //对密码加密处理
         userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
-
         userDao.save(userInfo);
     }
 
     @Override
-    public UserInfo findById(int id) {
+    public UserInfo findById(Integer id) {
         return userDao.findById(id);
-
     }
 
     @Override
-    public List<Role> findOtherRoles(int userId) {
-
+    public List<Role> findOtherRoles(Integer userId) {
         return userDao.findOtherRoles(userId);
     }
 
     @Override
-    public void addRoleToUser(int userId, int[] roleIds) {
+    public void addRoleToUser(Integer userId, Integer[] roleIds) {
         for (int roleId : roleIds) {
             userDao.addRoleToUser(userId,roleId);
         }

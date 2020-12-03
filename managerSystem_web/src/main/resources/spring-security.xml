@@ -7,6 +7,8 @@
           http://www.springframework.org/schema/security
           http://www.springframework.org/schema/security/spring-security.xsd">
 
+<!--	<security:global-method-security jsr250-annotations="enabled"></security:global-method-security>-->
+	<security:global-method-security secured-annotations="enabled"/>
 	<!-- 配置不拦截的资源 -->
 	<security:http pattern="/login.jsp" security="none"/>
 	<security:http pattern="/fail.jsp" security="none"/>
@@ -51,6 +53,7 @@
 	<!-- 配置加密类 -->
 	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
+	<bean id="webSecurityExpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"></bean>
 	<!-- 提供了入门的方式，在内存中存入用户名和密码
     <security:authentication-manager>
         <security:authentication-provider>

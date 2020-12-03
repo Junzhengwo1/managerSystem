@@ -21,7 +21,6 @@ public class ProductController {
 
     @RequestMapping("/findAll.do")
     public ModelAndView findAll(){
-        System.out.println("findProduct.....");
         ModelAndView mv=new ModelAndView();
         List<Product> products = productService.findAll();
         mv.addObject("productList",products);
@@ -31,7 +30,6 @@ public class ProductController {
 
     @RequestMapping("/save.do")
     public String save(Product product){
-        System.out.println("save.....");
         productService.save(product);
         return "redirect:findAll.do";
     }

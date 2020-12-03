@@ -36,8 +36,7 @@ public class OrdersController {
 
     //这是查询订单分页之后的
     @RequestMapping("/findAll.do")
-    public ModelAndView findAll(@RequestParam(name ="page",required = true,defaultValue ="1" )int page,@RequestParam(name = "size",required = true,defaultValue = "5")int size){
-        System.out.println("findOrders_page.....");
+    public ModelAndView findAll(@RequestParam(name ="page",required = true,defaultValue ="1" )Integer page,@RequestParam(name = "size",required = true,defaultValue = "5")Integer size){
         ModelAndView mv=new ModelAndView();
         List<Orders> ordersList = ordersService.findAll(page,size);
         //pageHelper提供的构造；就是一个分页的Bean
@@ -48,13 +47,11 @@ public class OrdersController {
     }
 
     @RequestMapping("/findById.do")
-    public ModelAndView findById(@RequestParam(name = "id",required = true)int ordersId){
-        System.out.println("查询订单详情。。。。");
+    public ModelAndView findById(@RequestParam(name = "id",required = true)Integer ordersId){
         ModelAndView mv=new ModelAndView();
         Orders orders=ordersService.findById(ordersId);
         mv.addObject("orders",orders);
         mv.setViewName("orders-show");
-
         return mv;
     }
 }
