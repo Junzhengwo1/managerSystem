@@ -11,11 +11,8 @@ import java.util.List;
  */
 public interface IRoleService {
 
-    /**
-     * 查询所有角色信息
-     * @return
-     */
-    public List<Role> findAll();
+
+    public List<Role> findAll(Integer page,Integer size);
 
     void save(Role role);
 

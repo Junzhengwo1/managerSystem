@@ -1,7 +1,9 @@
 package com.kou.controller;
+import com.github.pagehelper.PageInfo;
 import com.kou.domain.Permission;
 import com.kou.domain.Role;
 
+import com.kou.domain.UserInfo;
 import com.kou.service.IRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,11 +24,12 @@ public class RoleController {
     private IRoleService roleService;
 
     @RequestMapping("/findAll.do")
-    public ModelAndView findAll(){
+    public ModelAndView findAll(@RequestParam(name = "page",required = true,defaultValue = "1")Integer page,@RequestParam(name = "size",required = true,defaultValue = "5")Integer size){
         ModelAndView mv=new ModelAndView();
-        List<Role> roleList = roleService.findAll();
-        mv.addObject("roleList",roleList);
-        mv.setViewName("role-list");
+        List<Role> roles = roleService.findAll(page,size);
+        PageInfo pageInfo=new PageInfo(roles);
+        mv.addObject("pageInfo",pageInfo);
+        mv.setViewName("role-page-list");
         return mv;
     }
 

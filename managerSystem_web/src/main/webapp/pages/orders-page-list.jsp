@@ -79,12 +79,7 @@
 		<jsp:include page="aside.jsp"></jsp:include>
 		<!-- 导航侧栏 /-->
 
-		<!-- 内容区域 -->
-		<!-- @@master = admin-layout.html-->
-		<!-- @@block = content -->
-
 		<div class="content-wrapper">
-
 			<!-- 内容头部 -->
 			<section class="content-header">
 				<h1>
@@ -124,13 +119,8 @@
 										<button type="button" class="btn btn-default" title="删除">
 											<i class="fa fa-trash-o"></i> 删除
 										</button>
-										<button type="button" class="btn btn-default" title="开启">
-											<i class="fa fa-check"></i> 开启
-										</button>
-										<button type="button" class="btn btn-default" title="屏蔽">
-											<i class="fa fa-ban"></i> 屏蔽
-										</button>
-										<button type="button" class="btn btn-default" title="刷新">
+										<button type="button" class="btn btn-default" title="刷新"
+										onclick="location.href='${pageContext.request.contextPath}/orders/findAll.do'">
 											<i class="fa fa-refresh"></i> 刷新
 										</button>
 									</div>
@@ -176,51 +166,16 @@
 											<td>${orders.orderTimeStr }</td>
 											<td class="text-center">${orders.orderStatusStr }</td>
 											<td class="text-center">
-												<button type="button" class="btn bg-olive btn-xs">订单</button>
+
 												<button type="button" class="btn bg-olive btn-xs" onclick="location.href='${pageContext.request.contextPath}/orders/findById.do?id=${orders.id}'">详情</button>
 												<button type="button" class="btn bg-olive btn-xs">编辑</button>
 											</td>
 										</tr>
 									</c:forEach>
 								</tbody>
-
 							</table>
-							<!--数据列表/-->
-
-							<!--工具栏-->
-							<div class="pull-left">
-								<div class="form-group form-inline">
-									<div class="btn-group">
-										<button type="button" class="btn btn-default" title="新建">
-											<i class="fa fa-file-o"></i> 新建
-										</button>
-										<button type="button" class="btn btn-default" title="删除">
-											<i class="fa fa-trash-o"></i> 删除
-										</button>
-										<button type="button" class="btn btn-default" title="开启">
-											<i class="fa fa-check"></i> 开启
-										</button>
-										<button type="button" class="btn btn-default" title="屏蔽">
-											<i class="fa fa-ban"></i> 屏蔽
-										</button>
-										<button type="button" class="btn btn-default" title="刷新">
-											<i class="fa fa-refresh"></i> 刷新
-										</button>
-									</div>
-								</div>
-							</div>
-							<div class="box-tools pull-right">
-								<div class="has-feedback">
-									<input type="text" class="form-control input-sm"
-										placeholder="搜索"> <span
-										class="glyphicon glyphicon-search form-control-feedback"></span>
-								</div>
-							</div>
-							<!--工具栏/-->
 
 						</div>
-						<!-- 数据表格 /-->
-
 
 					</div>
 					<!-- /.box-body -->
@@ -229,14 +184,13 @@
                 <div class="box-footer">
                     <div class="pull-left">
                         <div class="form-group form-inline">
-                            总共2页，共${pageInfo.size}条数据。 每页显示
+                            共${pageInfo.list.size()}条数据。 每页显示
                             <select class="form-control" id="changePageSize" onchange="changePageSize()">
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
                                 <option>4</option>
                                 <option>5</option>
-								<option>6</option>
                             </select> 条
                         </div>
                     </div>
@@ -250,8 +204,6 @@
 							<c:forEach begin="1" end="${pageInfo.pages}" var="pageNum">
 								<li><a href="${pageContext.request.contextPath}/orders/findAll.do?page=${pageNum}&size=${pageInfo.pageSize}">${pageNum}</a></li>
 							</c:forEach>
-
-
                             <li><a href="${pageContext.request.contextPath}/orders/findAll.do?page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a></li>
                             <li>
                                 <a href="${pageContext.request.contextPath}/orders/findAll.do?page=${pageInfo.pages}&size=${pageInfo.pageSize}" aria-label="Next">尾页</a>
@@ -375,6 +327,7 @@
 	<script
 		src="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 	<script>
+
 		function changePageSize() {
 			//获取下拉框的值
 			var pageSize = $("#changePageSize").val();
@@ -383,6 +336,8 @@
 			location.href = "${pageContext.request.contextPath}/orders/findAll.do?page=1&size="
 					+ pageSize;
 		}
+
+
 		$(document).ready(function() {
 			// 选择框
 			$(".select2").select2();

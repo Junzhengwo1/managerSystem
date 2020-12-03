@@ -10,9 +10,11 @@ import java.util.List;
 public interface IProductService {
     /**
      * 查询所有产品信息
+     * @param page
+     * @param size
      * @return
      */
-    public List<Product> findAll();
+    public List<Product> findAll(Integer page,Integer size);
 
     /**
      * 添加产品

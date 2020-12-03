@@ -1,5 +1,6 @@
 package com.kou.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.kou.dao.IUserDao;
 import com.kou.domain.Role;
 import com.kou.domain.UserInfo;
@@ -57,7 +58,8 @@ public class UserServiceImpl implements IUserService {
 
 
     @Override
-    public List<UserInfo> findAll() {
+    public List<UserInfo> findAll(Integer page,Integer size) {
+        PageHelper.startPage(page,size);
         return userDao.findAll();
     }
 

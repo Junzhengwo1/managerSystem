@@ -1,5 +1,6 @@
 package com.kou.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.kou.dao.IRoleDao;
 import com.kou.domain.Permission;
 import com.kou.domain.Role;
@@ -21,7 +22,8 @@ public class RoleServiceImpl implements IRoleService {
     private IRoleDao roleDao;
 
     @Override
-    public List<Role> findAll() {
+    public List<Role> findAll(Integer page,Integer size) {
+        PageHelper.startPage(page,size);
         return roleDao.findAll();
     }
 

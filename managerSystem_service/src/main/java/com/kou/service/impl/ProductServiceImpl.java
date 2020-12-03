@@ -1,5 +1,6 @@
 package com.kou.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.kou.dao.IProductDao;
 import com.kou.domain.Product;
 import com.kou.service.IProductService;
@@ -19,7 +20,9 @@ public class ProductServiceImpl implements IProductService {
     @Autowired
     private IProductDao productDao;
     @Override
-    public List<Product> findAll() {
+    public List<Product> findAll(Integer page,Integer size) {
+        //代表一页显示五条；必须在正常查询代码之前
+        PageHelper.startPage(page,size);
         return productDao.findAll();
     }
 

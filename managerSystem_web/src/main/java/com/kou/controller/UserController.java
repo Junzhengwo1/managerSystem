@@ -1,5 +1,7 @@
 package com.kou.controller;
 
+import com.github.pagehelper.PageInfo;
+import com.kou.domain.Product;
 import com.kou.domain.Role;
 import com.kou.domain.UserInfo;
 import com.kou.service.IUserService;
@@ -27,11 +29,13 @@ public class UserController {
     private IUserService userService;
 
     @RequestMapping("/findAll.do")
-    public ModelAndView findAll( ){
-        List<UserInfo> userList = userService.findAll();
+    @Secured("ROLE_ADMIN")
+    public ModelAndView findAll(@RequestParam(name = "page",required = true,defaultValue = "1")Integer page,@RequestParam(name = "size",required = true,defaultValue = "5")Integer size){
         ModelAndView mv=new ModelAndView();
-        mv.addObject("userList",userList);
-        mv.setViewName("user-list");
+        List<UserInfo> userInfos = userService.findAll(page,size);
+        PageInfo pageInfo=new PageInfo(userInfos);
+        mv.addObject("pageInfo",pageInfo);
+        mv.setViewName("user-page-list");
         return mv;
     }
 
